@@ -1,7 +1,17 @@
-export default function Home() {
+import HeroSection from "@/components/section/HeroSection";
+import TerminalWindow from "@/components/terminal/TerminalWindow";
+import Projects from "@/components/section/Projects";
+import CommissionsForm from "@/components/section/CommissionsForm";
+import StatusBar from "@/components/section/Statusbar";
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      my space in the internet
-    </div>
+    <>
+      <HeroSection />
+      <StatusBar />
+      <TerminalWindow />
+      <Projects />
+      <CommissionsForm />
+    </>
   );
 }

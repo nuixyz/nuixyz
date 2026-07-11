@@ -1,33 +1,73 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "nuixyz",
-  description: "My corner in the internet!",
+  title: {
+    default: "nuixyz",
+    template: "%s | nuixyz",
+  },
+  description: "Hi! I'm nuix. I am a dev and an artist.",
+  keywords: [
+    "developer",
+    "portfolio",
+    "open source",
+    "digital art",
+    "full stack",
+    "next.js",
+  ],
+  authors: [{ name: "nuixyz" }],
+  creator: "nuixyz",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://nuixyz.dev",
+    siteName: "nuixyz.dev",
+    title: "nuixyz",
+    description: "dev and artist",
+    images: [{ url: "/fat-teto.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "nuixdraws",
+    description: "twitter page for my art shenanigans",
+    creator: "@nuixdraws",
+    images: ["/fat-teto.png"],
+  },
+  robots: { index: true, follow: true },
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>
+        <Navbar />
+        <main className="page-enter">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
