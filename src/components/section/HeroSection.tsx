@@ -1,6 +1,7 @@
 import { SOCIAL_LINKS } from "@/lib/data";
 import Image from "next/image";
 import TUIPane from "../ui/TuiPane";
+import AvatarPane from "./AvatarPane";
 
 export default function HeroSection() {
   return (
@@ -21,7 +22,7 @@ export default function HeroSection() {
           </p>
           {/* title */}
           <h1 className="font-mono text-[clamp(1.7rem,3.4vw,2.5rem)] font-bold leading-[1.25] tracking-[-0.01em] text-[var(--text)] mb-5">
-            hi, i&apos;m <span className="text-[var(--mauve)]">nui</span>.
+            hi, i&apos;m <span className="text-[var(--mauve)]">cha</span>.
             <span className="inline-block w-3 h-[1em] bg-[var(--mauve)] vertical-bottom mb-1.5 ml-0.5 animate-[blink_1s_step-end_infinite]" style={{ verticalAlign: 'text-bottom' }} />
           </h1>
 
@@ -42,13 +43,13 @@ export default function HeroSection() {
             </a>
             <a
               href="#projects"
-              className="border border-[var(--surface2)] px-4 py-2 font-mono text-xs text-[var(--subtext1)] transition-all hover:border-[var(--mauve)] hover:text-[var(--mauve)] hover:bg-[var(--surface0)]"
+              className="border border-[var(--surface2)] px-4 py-2 font-mono text-xs text-[var(--subtext1)] transition-all hover:border-[var(--mauve)] hover:text-[var(--mauve)]"
             >
               &lt; view projects &gt;
             </a>
             <a
               href="#contact"
-              className="border border-[var(--surface2)] px-4 py-2 font-mono text-xs text-[var(--subtext1)] transition-all hover:border-[var(--mauve)] hover:text-[var(--mauve)] hover:bg-[var(--surface0)]"
+              className="border border-[var(--surface2)] px-4 py-2 font-mono text-xs text-[var(--subtext1)] transition-all hover:border-[var(--mauve)] hover:text-[var(--mauve)]"
             >
               &lt; commission me &gt;
             </a>
@@ -73,7 +74,7 @@ export default function HeroSection() {
       </TUIPane>
 
       {/* right side */}
-      <TUIPane
+      {/*<TUIPane
         index={2}
         label="my_oc.png"
         className="order-first md:order-none flex flex-col"
@@ -92,7 +93,9 @@ export default function HeroSection() {
             <span className="text-[var(--mauve)]">nuix</span> &middot; <span className="text-[var(--overlay0)]">dev and artist</span>
           </p>
         </div>
-      </TUIPane>
+      </TUIPane>*/}
+
+      <AvatarPane />
     </section>
   );
 }
