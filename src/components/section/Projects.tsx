@@ -1,20 +1,23 @@
 import { Star } from "lucide-react";
 import { PROJECTS, type Project } from "@/lib/data";
+import TUIPane from "../ui/TuiPane";
 
-function parseGithubRepo(url?: string) {
-  if (!url) return null;
-  const match = url.match(/github\.com\/([^/]+)\/([^/]+?)\/?$/i);
-  if (!match) return null;
-  return { owner: match[1], repo: match[2] };
-}
+const STATUS_BADGE: Record<Project["status"], string> = {
+  live: "badge-active",
+  wip: "badge-wip",
+  archived: "badge-archived",
+};
+
+const GRID_COLS = "grid-cols-[56px_1fr_88px_72px]";
+const TABLE_MIN_WIDTH = "min-w-[560px]";
 
 async function getStars(githubUrl?: string): Promise<number | null> {
-  const repo = parseGithubRepo(githubUrl);
-  if (!repo) return null;
+  const match = githubUrl?.match(/github\.com\/([^/]+)\/([^/]+?)\/?$/i);
+  if (!match) return null;
 
   try {
     const res = await fetch(
-      `https://api.github.com/repos/${repo.owner}/${repo.repo}`,
+      `https://api.github.com/repos/${match[1]}/${match[2]}`,
       { next: { revalidate: 3600 } }
     );
     if (!res.ok) return null;
@@ -34,38 +37,41 @@ function ProjectRow({
   project: Project;
   stars: number | null;
 }) {
-  const href = project.githubUrl ?? project.liveUrl ?? "#";
+  const Wrapper = project.githubUrl ? "a" : "div";
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="group relative z-0 flex items-stretch border border-subtle hover:border-[var(--border3)]"
+    <Wrapper
+      {...(project.githubUrl
+        ? { href: project.githubUrl, target: "_blank", rel: "noreferrer" }
+        : {})}
+      className={`group grid items-stretch transition-colors ${GRID_COLS}`}
     >
       {/* Icon */}
-      <div className="flex w-14 shrink-0 items-center justify-center border-r border-default text-xl">
+      <div className="flex items-center justify-center border py-3 text-base transition-colors group-hover:border-[var(--mauve)] border-[var(--surface1)]">
         {project.icon}
       </div>
 
-      {/* Title */}
-      <div className="flex min-w-0 flex-1 flex-col justify-center gap-0.5 px-4 py-3">
-        <p className="truncate font-mono text-sm font-semibold text-primary">
+      {/* Name & Description */}
+      <div className="flex flex-col justify-center min-w-0 border-t border-b border-[var(--surface1)] transition-colors group-hover:border-[var(--mauve)]">
+        <p className="truncate px-4 pt-4 pb-1 font-mono text-xs font-bold text-[var(--text)] transition-colors group-hover:text-[var(--mauve)]">
           {project.name}
         </p>
-        <p className="truncate text-sm text-secondary">
+        <p className="truncate px-4 pb-4 font-mono text-xs text-[var(--subtext0)]">
           {project.description}
         </p>
       </div>
 
+      {/* Status */}
+      <div className="flex items-center justify-center border px-2 transition-colors group-hover:border-[var(--mauve)] border-[var(--surface1)]">
+        <span className={STATUS_BADGE[project.status]}>[ {project.status} ]</span>
+      </div>
+
       {/* Stars */}
-      {project.githubUrl && (
-        <div className="flex shrink-0 items-center gap-1.5 px-4 font-mono text-sm text-muted">
-          <Star size={14} className="shrink-0" />
-          <span>{stars !== null ? stars.toLocaleString() : "—"}</span>
-        </div>
-      )}
-    </a>
+      <div className="flex items-center justify-center gap-1 px-2 font-mono text-[11px] text-[var(--overlay0)] border-t border-r border-b border-[var(--surface1)] transition-colors group-hover:border-[var(--mauve)]">
+        <Star size={12} className="shrink-0" />
+        {stars !== null ? stars.toLocaleString() : "—"}
+      </div>
+    </Wrapper>
   );
 }
 
@@ -80,15 +86,37 @@ export default async function Projects() {
   );
 
   return (
-    <section className="mx-auto max-w-4xl px-6 py-8">
-      <p className="mb-2 font-mono text-xs tracking-widest text-muted">
-        <span style={{ color: "var(--green)" }}>$</span> cat projects.md
-      </p>
-      <div className="flex flex-col">
-        {rows.map(({ project, stars }) => (
-          <ProjectRow key={project.id} project={project} stars={stars} />
-        ))}
+    <section className="mx-auto max-w-[1180px] px-6">
+      <div className="mb-3 flex items-baseline justify-between">
+        <p className="section-label">featured_projects</p>
+        <a
+          href="/projects"
+          className="border-b border-[var(--surface2)] font-mono text-xs text-[var(--overlay0)] transition-colors hover:text-[var(--mauve)]"
+        >
+          view all &rarr;
+        </a>
       </div>
+
+      <TUIPane index={5} label="projects.tbl">
+        <div className="overflow-x-auto">
+          <div className={TABLE_MIN_WIDTH}>
+            {/* Table header */}
+            <div className={`grid px-0 py-2.5 font-mono text-[11px] border-b border-[var(--surface2)] uppercase tracking-wider text-[var(--overlay0)] ${GRID_COLS}`}>
+              <span />
+              <span className="px-4">name</span>
+              <span className="px-2 text-center">status</span>
+              <span className="px-2 text-center">stars</span>
+            </div>
+
+            {/* Table body */}
+            <div className="flex flex-col">
+              {rows.map(({ project, stars }) => (
+                <ProjectRow key={project.id} project={project} stars={stars} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </TUIPane>
     </section>
   );
 }

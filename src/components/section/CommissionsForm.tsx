@@ -9,9 +9,7 @@ type FormState = {
 };
 
 const RECIPIENT_EMAIL = "contactme@nuixyz.dev";
-
 const initialState: FormState = { from: "", subject: "", message: "" };
-
 type Status = "idle" | "sending" | "sent" | "error";
 
 export default function CommissionsForm() {
@@ -54,30 +52,20 @@ export default function CommissionsForm() {
   };
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-8">
-      <p className="font-mono text-xs text-muted mb-3">
+    <div className="mx-auto max-w-[1180px] px-5 py-7">
+      <p className="font-mono text-xs mb-4 text-[var(--overlay0)]">
         <span style={{ color: "var(--green)" }}>$</span> ./commission_me
       </p>
 
       <form
         onSubmit={handleSubmit}
-        className="cursor-text overflow-hidden border border-subtle bg-transparent"
+        className="overflow-hidden border border-[var(--surface1)] bg-[var(--mantle)] font-mono"
       >
-        {/* to */}
-        {/*<div className="flex items-center gap-3 px-5 py-4 border-b border-subtle">
-          <label className="font-mono text-xs text-violet w-16 shrink-0">
-            to:
-          </label>
-          <span className="text-sm text-secondary font-mono">
-            {RECIPIENT_EMAIL}
-          </span>
-        </div>*/}
-
         {/* from */}
-        <div className="flex items-center gap-3 px-5 py-3 border-b border-subtle">
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-[var(--surface1)]">
           <label
             htmlFor="from"
-            className="font-mono text-sm text-violet w-16 shrink-0"
+            className="text-xs text-[var(--mauve)] w-16 shrink-0 font-bold"
           >
             from:
           </label>
@@ -88,15 +76,15 @@ export default function CommissionsForm() {
             value={form.from}
             onChange={(e) => update({ from: e.target.value })}
             placeholder="your email id"
-            className="bg-transparent text-sm text-primary placeholder:text-muted placeholder:italic outline-none"
+            className="w-full bg-transparent text-xs text-[var(--text)] placeholder:text-[var(--overlay0)] placeholder:italic outline-none"
           />
         </div>
 
         {/* subject */}
-        <div className="flex items-center gap-3 px-5 py-3 border-b border-subtle">
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-[var(--surface1)]">
           <label
             htmlFor="subject"
-            className="font-mono text-sm text-violet w-16 shrink-0"
+            className="text-xs text-[var(--mauve)] w-16 shrink-0 font-bold"
           >
             subject:
           </label>
@@ -106,26 +94,26 @@ export default function CommissionsForm() {
             value={form.subject}
             onChange={(e) => update({ subject: e.target.value })}
             placeholder="what's this about?"
-            className="bg-transparent text-sm text-primary placeholder:text-muted placeholder:italic outline-none"
+            className="w-full bg-transparent text-xs text-[var(--text)] placeholder:text-[var(--overlay0)] placeholder:italic outline-none"
           />
         </div>
 
         {/* message */}
         <textarea
           required
-          rows={5}
+          rows={6}
           value={form.message}
           onChange={(e) => update({ message: e.target.value })}
           placeholder="Send me a mail!"
-          className="w-full px-5 py-4 bg-transparent text-sm text-primary placeholder:text-muted placeholder:italic outline-none resize-none"
+          className="w-full px-5 py-4 bg-transparent text-xs text-[var(--text)] placeholder:text-[var(--overlay0)] placeholder:italic outline-none resize-none"
         />
 
         {/* footer */}
-        <div className="flex items-center justify-between px-5 py-3">
+        <div className="flex items-center justify-between px-5 py-3 border-t border-[var(--surface1)] bg-[var(--crust)]">
           <span
-            className="font-mono text-xs"
+            className="text-xs"
             style={{
-              color: status === "error" ? "var(--pink)" : "var(--text3)",
+              color: status === "error" ? "var(--red)" : "var(--subtext0)",
             }}
           >
             {status === "error" && (error || "something went wrong")}
@@ -136,13 +124,12 @@ export default function CommissionsForm() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="font-mono text-xs px-4 py-2 rounded-md border transition-colors disabled:opacity-50"
+            className="text-xs px-4 py-2 border border-[var(--surface2)] bg-transparent text-[var(--subtext1)] cursor-pointer transition-all hover:border-[var(--mauve)] hover:color-[var(--mauve)] hover:bg-[var(--surface0)] disabled:opacity-50"
             style={{
-              color: "var(--violet)",
-              borderColor: "var(--border3)",
+              color: "var(--subtext1)",
             }}
           >
-            {status === "sending" ? "sending" : "send"}
+            {status === "sending" ? "< sending >" : "< send >"}
           </button>
         </div>
       </form>

@@ -2,6 +2,7 @@
 
 import { TERMINAL_COMMANDS } from "@/lib/data";
 import { useState, useRef, useEffect, KeyboardEvent } from "react";
+import TUIPane from "../ui/TuiPane";
 
 interface HistoryEntry {
   command: string;
@@ -76,42 +77,35 @@ export default function Terminal() {
   };
 
   return (
-      <section className="mx-auto max-w-4xl px-6 py-8">
+    <section className="mx-auto max-w-[1180px] px-5 py-4">
+      <TUIPane index={4} label="terminal.sh">
         <div
           onClick={() => inputRef.current?.focus()}
-          className="cursor-text overflow-hidden rounded-lg border border-subtle bg-transparent"
+          className="cursor-text font-mono"
         >
-          {/* Title Bar */}
-          <div className="flex items-center gap-2 border-b border-subtle bg-elevated px-4 py-2.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-[var(--pink)]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[var(--amber)]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[var(--green)]" />
-            <span className="ml-2 font-mono text-xs text-secondary selection:bg-transparent">
-              guest@nuixyz: ~
-            </span>
-          </div>
           <div
             ref={scrollRef}
-            className="h-72 overflow-y-auto px-4 py-3 font-mono text-sm leading-relaxed md:h-80"
+            className="h-72 overflow-y-auto px-5 py-4 text-xs leading-relaxed md:h-80"
           >
-            <p className="mb-2 text-muted italic">
-              ようこそ~! Type <span className="text-violet">help</span> to see
+            <p className="mb-3 text-[var(--overlay0)] italic">
+              ようこそ~! Type <span className="text-[var(--mauve)] font-bold">help</span> to see
               available commands.
             </p>
 
             {entries.map((entry, i) => (
-              <div key={i} className="mb-2">
-                <p className="text-secondary">
-                  <span className="text-[var(--violet-l)]">{USER}</span> {entry.command}
+              <div key={i} className="mb-3">
+                <p className="text-[var(--subtext1)]">
+                  <span className="text-[var(--mauve)]">{USER}</span>
+                  {entry.command}
                 </p>
-                <pre className="whitespace-pre-wrap text-primary">
+                <pre className="whitespace-pre-wrap text-[var(--text)] mt-1">
                   {entry.output}
                 </pre>
               </div>
             ))}
 
             <div className="flex items-center gap-2">
-              <span className="shrink-0 text-lav-l">{USER}</span>
+              <span className="shrink-0 text-[var(--mauve)]">{USER}</span>
               <input
                 ref={inputRef}
                 value={input}
@@ -120,12 +114,13 @@ export default function Terminal() {
                 spellCheck={false}
                 autoComplete="off"
                 autoCapitalize="off"
-                className="flex-1 bg-transparent text-primary outline-none"
+                className="flex-1 bg-transparent text-[var(--text)] outline-none"
                 aria-label="Terminal input"
               />
             </div>
           </div>
         </div>
-      </section>
-    );
+      </TUIPane>
+    </section>
+  );
 }

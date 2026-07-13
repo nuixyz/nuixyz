@@ -1,7 +1,10 @@
 import { SiGithub, SiX } from "@icons-pack/react-simple-icons";
 
 export const NAV_LINKS = [
+  { href: "/", label: "~", ariaLabel: "home"},
+  { href: "/projects", label: "projects", ariaLabel: "projects"},
   { href: "/blog", label: "blog", ariaLabel: "blog" },
+  { href: "/gallery", label: "gallery", ariaLabel: "gallery" },
   { href: "/commissions", label: "commissions", ariaLabel: "Commission me" },
 ] as const;
 

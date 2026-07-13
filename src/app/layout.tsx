@@ -63,10 +63,12 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
-      <body>
-        <Navbar />
-        <main className="page-enter">{children}</main>
-        <Footer />
+      <body className="min-h-screen overflow-x-hidden bg-[var(--crust)]">
+        <div className="mx-auto min-h-screen max-w-[1180px] border-l border-r border-[var(--surface1)] bg-[var(--base)]">
+          <Navbar />
+          <main className="page-enter">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
