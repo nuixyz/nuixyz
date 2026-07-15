@@ -54,6 +54,7 @@ export default function GallerySection() {
                     src={active.imageSrc}
                     alt={active.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 420px"
                     className="object-cover"
                   />
                 </div>

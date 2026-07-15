@@ -87,7 +87,7 @@ export const ARTWORK: Artwork[] = [
     description: "bathed in darkness",
     category: "digital",
     tags: ["digial", "procreate"],
-    imageSrc: "/artwork/thevoidwithin.png",
+    imageSrc: "/artwork/thevoidwithin.webp",
     featured: true,
   },
   {
@@ -96,7 +96,7 @@ export const ARTWORK: Artwork[] = [
     description: "Have you ever thought of eating an apple made of glass?",
     category: "digital",
     tags: ["digital", "procreate"],
-    imageSrc: "/artwork/crystalapple.png",
+    imageSrc: "/artwork/crystalapple.webp",
     featured: true,
   },
   {
@@ -105,7 +105,7 @@ export const ARTWORK: Artwork[] = [
     description: "i was listening to zutomayo while making this",
     category: "digital",
     tags: ["digital", "procreate", "oc"],
-    imageSrc: "/artwork/specsandswag.png",
+    imageSrc: "/artwork/specsandswag.webp",
     featured: true,
   },
   {
@@ -114,7 +114,7 @@ export const ARTWORK: Artwork[] = [
     description: "Purple clouds with me and a comically large candy",
     category: "pixel",
     tags: ["pixel"],
-    imageSrc: "/artwork/whimsical.png",
+    imageSrc: "/artwork/whimsical.webp",
     featured: true,
   },
   {
@@ -123,7 +123,7 @@ export const ARTWORK: Artwork[] = [
     description: "random sketch 1",
     category: "digital",
     tags: ["digital", "procreate"],
-    imageSrc: "/artwork/sketch.png",
+    imageSrc: "/artwork/sketch.webp",
     featured: true,
   },
   // {
@@ -132,7 +132,7 @@ export const ARTWORK: Artwork[] = [
   //   description: "I instantly give up",
   //   category: "pixel",
   //   tags: ["pixel"],
-  //   imageSrc: "/artwork/triplebaka.png",
+  //   imageSrc: "/artwork/triplebaka.webp",
   //   featured: true,
   // },
 ];
