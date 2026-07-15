@@ -118,6 +118,16 @@
     font-family: var(--font-sans);
   }
 
+  /* hide scroll bar */
+  .no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Edge */
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
   /* Updated Terminal Element Utilities */
   .cursor-block {
     display: inline-block;
@@ -174,6 +184,14 @@
     color: var(--mauve);
     font-size: 0.8125rem;
   }
+
+  /* Terminal */
+  .t-section  { color: var(--peach); font-weight: 700; }
+  .t-key      { color: var(--mauve); }
+  .t-val      { color: var(--green); }
+  .t-comment  { color: var(--overlay0); font-style: italic; }
+  .t-err      { color: var(--red); }
+  .t-link     { color: var(--blue); text-decoration: underline; cursor: pointer; }
 }
 
 @keyframes blink {

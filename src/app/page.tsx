@@ -1,8 +1,9 @@
-import HeroSection from "@/components/section/HeroSection";
-import TerminalWindow from "@/components/terminal/TerminalWindow";
-import Projects from "@/components/section/Projects";
-import CommissionsForm from "@/components/section/CommissionsForm";
-import StatusBar from "@/components/section/Statusbar";
+import HeroSection from "@/components/sections/HeroSection/HeroSection";
+import StatusBar from "@/components/sections/HeroSection/Statusbar";
+import TerminalWindow from "@/components/sections/terminal/TerminalWindow";
+import Projects from "@/components/sections/Projects";
+import GallerySection from "@/components/sections/gallery/GallerySection";
+import CommissionsForm from "@/components/sections/CommissionsForm";
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <StatusBar />
       <TerminalWindow />
       <Projects />
+      <GallerySection />
       <CommissionsForm />
     </>
   );

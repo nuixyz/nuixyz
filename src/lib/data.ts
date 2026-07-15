@@ -1,5 +1,3 @@
-import { SiGithub, SiX } from "@icons-pack/react-simple-icons";
-
 export const NAV_LINKS = [
   { href: "/", label: "~", ariaLabel: "home"},
   { href: "/projects", label: "projects", ariaLabel: "projects"},
@@ -9,8 +7,9 @@ export const NAV_LINKS = [
 ] as const;
 
 export const SOCIAL_LINKS = [
-  { href: "https://github.com/nuixyz", label: "github", icon: SiGithub },
-  { href: "https://twitter.com/nuixdraws", label: "twitter", icon: SiX },
+  { href: "https://github.com/nuixyz", label: "github"},
+  { href: "https://twitter.com/nuixdraws", label: "twitter"},
+  { href: "https://instagram.com/nuixdraws", label: "instagram"},
 ] as const;
 
 export interface Skill {
@@ -83,72 +82,113 @@ export interface Artwork {
 
 export const ARTWORK: Artwork[] = [
   {
-    id: "test",
-    title: "test",
-    description: "This is a test image",
+    id: "1",
+    title: "The Void Within",
+    description: "bathed in darkness",
     category: "digital",
-    tags: ["pixel", "fan-art"],
-    imageSrc: "/fat-teto.png",
+    tags: ["digial", "procreate"],
+    imageSrc: "/artwork/thevoidwithin.png",
     featured: true,
   },
+  {
+    id: "2",
+    title: "Crytal Apple",
+    description: "Have you ever thought of eating an apple made of glass?",
+    category: "digital",
+    tags: ["digital", "procreate"],
+    imageSrc: "/artwork/crystalapple.png",
+    featured: true,
+  },
+  {
+    id: "3",
+    title: "girl 🤓",
+    description: "i was listening to zutomayo while making this",
+    category: "digital",
+    tags: ["digital", "procreate", "oc"],
+    imageSrc: "/artwork/specsandswag.png",
+    featured: true,
+  },
+  {
+    id: "4",
+    title: "whimsical",
+    description: "Purple clouds with me and a comically large candy",
+    category: "pixel",
+    tags: ["pixel"],
+    imageSrc: "/artwork/whimsical.png",
+    featured: true,
+  },
+  {
+    id: "5",
+    title: "Green hair",
+    description: "random sketch 1",
+    category: "digital",
+    tags: ["digital", "procreate"],
+    imageSrc: "/artwork/sketch.png",
+    featured: true,
+  },
+  // {
+  //   id: "6",
+  //   title: "baka baka baka",
+  //   description: "I instantly give up",
+  //   category: "pixel",
+  //   tags: ["pixel"],
+  //   imageSrc: "/artwork/triplebaka.png",
+  //   featured: true,
+  // },
 ];
 
 export const TERMINAL_COMMANDS: Record<string, string> = {
-  help: `AVAILABLE COMMANDS
-──────────────────
-whoami     who i am
-neofetch   try it
-projects   things i've built
-gallery    my artwork
-skills     my skills
-contact    get in touch
-blog       my writing
-clear      clear terminal
-──────────────────`,
+  help: `<span class="t-section">available commands</span>
+<span class="t-key">whoami</span>     who i am
+<span class="t-key">neofetch</span>   try it
+<span class="t-key">projects</span>   things i've built
+<span class="t-key">gallery</span>    my artwork
+<span class="t-key">contact</span>    get in touch
+<span class="t-key">blog</span>       my writing
+<span class="t-key">clear</span>      clear terminal`,
 
-  about: `ABOUT ME
-────────
+  about: `<span class="t-section">about me</span>
 I like computers and things related to it`,
 
-  skills: `SKILLS
-──────
-languages  Go · Python · C · C++ · Typescript · Javascript
-frontend   Next.js · React · Tailwind
-backend    Node.js · FastAPI · Postgres · Redis
-tools      Neovim · Git · Docker
-art        Procreate · Feather3D · Figma`,
+//   skills: `<span class="t-section">skills</span><br/>
+// <span class="t-key">languages</span>  <span class="t-val">Go · Python · C · C++ · Typescript · Javascript</span><br/>
+// <span class="t-key">frontend</span>   <span class="t-val">Next.js · React · Tailwind</span><br/>
+// <span class="t-key">backend</span>    <span class="t-val">Node.js · FastAPI · Postgres · Redis</span><br/>
+// <span class="t-key">tools</span>      <span class="t-val">Neovim · Git · Docker</span><br/>
+// <span class="t-key">art</span>        <span class="t-val">Procreate · Feather3D · Figma</span>`,
 
-  whoami: "nuixyz — developer; artist",
+  whoami: `<span class="t-val">nuixyz</span> — developer; artist`,
 
-  projects:
-    "PROJECTS\n────────\n[Project 1](link) - Description\n[Project 2](link) - Description",
+  projects: `<span class="t-section">projects</span>
+<span class="t-key">kanarenshu</span>  <span class="t-link">github.com/nuixyz/kanarenshu</span>`,
 
-  gallery: "GALLERY\n───────\nCheck out my art here: /gallery",
+  gallery: `<span class="t-section">gallery</span>
+Latest art: <span class="t-link">/gallery</span>`,
 
-  blog: "BLOG\n────\nLatest posts: /blogs",
+  blog: `<span class="t-section">blog</span>
+Latest posts: <span class="t-link">/blogs</span>`,
 
-  contact: "CONTACT\n───────\nEmail: contactme@nuixyz.dev\nTwitter/X: @nuixdraws",
+  contact: `<span class="t-section">contact</span>
+<span class="t-key">email</span>    <span class="t-link">contactme@nuixyz.dev</span>
+<span class="t-key">twitter</span>  <span class="t-link">@nuixdraws</span>`,
 
-  neofetch:
-    "NEOFETCH\n────────\nOS: Arch Linux\nKernel: 6.9.0-arch\nShell: fish\nWM: Hyprland",
+  neofetch: `<span class="t-section">neofetch</span>
+<span class="t-key">OS</span>      <span class="t-val">Arch Linux</span>
+<span class="t-key">Kernel</span>  <span class="t-val">6.9.0-arch</span>
+<span class="t-key">Shell</span>   <span class="t-val">fish</span>
+<span class="t-key">WM</span>      <span class="t-val">Hyprland</span>`,
 
-  ls: "about/  projects/  blog/  gallery/  commissions/  contact/",
+  ls: `<span class="t-val">about/</span>  <span class="t-val">projects/</span>  <span class="t-val">blog/</span>  <span class="t-val">gallery/</span>  <span class="t-val">commissions/</span>  <span class="t-val">contact/</span>`,
 
-  pwd: "/home/nuixyz/portfolio",
+  pwd: `<span class="t-val">/home/nuixyz/portfolio</span>`,
 
-  uname: "Linux archlinux 6.9.0-arch1 #1 SMP x86_64 GNU/Linux",
+  uname: `<span class="t-val">Linux archlinux 6.9.0-arch1 #1 SMP x86_64 GNU/Linux</span>`,
 
-  sudo: "nuixyz is not in the sudoers file.\nThis incident will be reported.",
+  sudo: `<span class="t-err">nuixyz is not in the sudoers file.</span><br/><span class="t-comment">This incident will be reported.</span>`,
 
-  "rm -rf /": "nice try.",
+  "rm -rf /": `<span class="t-err">nice try.</span>`,
 
-  ":(){ :|:& };:": "lol no.",
+  ":(){ :|:& };:": `<span class="t-err">lol no.</span>`,
 
-  exit: "There is no escape.",
+  exit: `<span class="t-err">There is no escape.</span>`,
 };
-
-export const STATUS_BAR_ITEMS = [
-  { dot: "green", text: "open to work" },
-  { dot: "violet", text: "arch linux · hyprland" },
-  { dot: "pink", text: "silksong tomorrow" },
-] as const;

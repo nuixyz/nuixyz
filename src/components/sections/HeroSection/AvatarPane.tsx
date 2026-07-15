@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import TUIPane from "../ui/TuiPane"
+import TUIPane from "../../ui/TuiPane"
 
 export default function AvatarPane() {
   let asciiArt = "[ no art loaded ]"
@@ -13,7 +13,7 @@ export default function AvatarPane() {
   }
   return (
       <TUIPane
-        index={2}
+        index={"[1]"}
         label="avatar.txt"
         className="order-first md:order-none flex flex-col"
       >

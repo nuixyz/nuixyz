@@ -97,7 +97,7 @@ export default async function Projects() {
         </a>
       </div>
 
-      <TUIPane index={5} label="projects.tbl">
+      <TUIPane index={"[5]"} label="projects.tbl">
         <div className="overflow-x-auto">
           <div className={TABLE_MIN_WIDTH}>
             {/* Table header */}

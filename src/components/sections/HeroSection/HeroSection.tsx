@@ -1,14 +1,15 @@
 import { SOCIAL_LINKS } from "@/lib/data";
 import Image from "next/image";
-import TUIPane from "../ui/TuiPane";
+import TUIPane from "../../ui/TuiPane";
 import AvatarPane from "./AvatarPane";
 
 export default function HeroSection() {
   return (
-    <section className="mx-auto grid max-w-[1180px] grid-cols-1 gap-4 px-5 py-4 md:grid-cols-[1.4fr_0.6fr]">
+    <section className="mx-auto grid max-w-[1180px] grid-cols-1 gap-4 px-5 py-4 md:grid-cols-[0.6fr_1.4fr]">
+      <AvatarPane />
       {/* left side */}
       <TUIPane
-        index={1}
+        index={"[2]"}
         label="profile.sh"
         className="flex flex-col gap-0"
       >
@@ -17,7 +18,7 @@ export default function HeroSection() {
             # available for work &amp; commissions :D
           </p>
 
-          <p className="py-3 pl-0.6 font-mono text-sm tracking-widest text-muted">
+          <p className="py-3 pl-0.6 font-mono text-xs tracking-widest text-muted">
             <span className="text-[var(--green)]">$</span> whoami
           </p>
           {/* title */}
@@ -27,8 +28,14 @@ export default function HeroSection() {
           </h1>
 
           {/* $ whoami */}
-          <div className="max-w-2xl border-l-2 border-[var(--mauve)] bg-[var(--surface0)] pl-3 font-mono text-[12.5px] leading-[1.9] text-[var(--subtext1)] mb-5">
-            hello! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <div className="max-w-2xl border-l-2 border-[var(--mauve)] bg-[var(--surface0)] pl-3 font-mono text-xs leading-[1.9] text-[var(--subtext1)] mb-5">
+            hello and welcome to my website! i am cha (ヌイ) <br /> i build things that live in terminals and browsers. <br />
+            i...
+            <ul className="list-disc pl-5">
+              <li>draw 2d digital illustration</li>
+              <li>make pixel art</li>
+            </ul>
+            if you are intesrested in working with me, you can email me at <a href="#commissionme"><u>contactme@nuixyz.dev!</u></a> :)
           </div>
 
           {/* Bracket buttons */}
@@ -42,13 +49,13 @@ export default function HeroSection() {
               &lt; &darr; resume.pdf &gt;
             </a>
             <a
-              href="#projects"
+              href="/projects"
               className="border border-[var(--surface2)] px-4 py-2 font-mono text-xs text-[var(--subtext1)] transition-all hover:border-[var(--mauve)] hover:text-[var(--mauve)]"
             >
               &lt; view projects &gt;
             </a>
             <a
-              href="#contact"
+              href="#commissionme"
               className="border border-[var(--surface2)] px-4 py-2 font-mono text-xs text-[var(--subtext1)] transition-all hover:border-[var(--mauve)] hover:text-[var(--mauve)]"
             >
               &lt; commission me &gt;
@@ -94,8 +101,6 @@ export default function HeroSection() {
           </p>
         </div>
       </TUIPane>*/}
-
-      <AvatarPane />
     </section>
   );
 }

@@ -2,7 +2,7 @@
 
 import { TERMINAL_COMMANDS } from "@/lib/data";
 import { useState, useRef, useEffect, KeyboardEvent } from "react";
-import TUIPane from "../ui/TuiPane";
+import TUIPane from "../../ui/TuiPane";
 
 interface HistoryEntry {
   command: string;
@@ -78,7 +78,7 @@ export default function Terminal() {
 
   return (
     <section className="mx-auto max-w-[1180px] px-5 py-4">
-      <TUIPane index={4} label="terminal.sh">
+      <TUIPane index={"[4]"} label="terminal.sh">
         <div
           onClick={() => inputRef.current?.focus()}
           className="cursor-text font-mono"
@@ -98,9 +98,10 @@ export default function Terminal() {
                   <span className="text-[var(--mauve)]">{USER}</span>
                   {entry.command}
                 </p>
-                <pre className="whitespace-pre-wrap text-[var(--text)] mt-1">
-                  {entry.output}
-                </pre>
+                <pre
+                  className="whitespace-pre-wrap text-[var(--text)]"
+                  dangerouslySetInnerHTML={{ __html: entry.output }}
+                />
               </div>
             ))}
 

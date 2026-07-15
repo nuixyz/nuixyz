@@ -1,9 +1,9 @@
-import TUIPane from "../ui/TuiPane";
+import TUIPane from "../../ui/TuiPane";
 
 export default function StatusBar() {
   return (
     <footer className="mx-auto w-full max-w-[1180px] px-5">
-      <TUIPane index={3} label="status.log">
+      <TUIPane index={"[3]"} label="status.log">
         <div className="p-2 flex flex-col md:flex-row md:items-center font-mono text-xs text-[var(--subtext1)] divide-y divide-[var(--surface1)] md:divide-y-0">
 
           {/* Availability */}
