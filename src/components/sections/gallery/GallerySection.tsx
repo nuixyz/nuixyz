@@ -12,6 +12,15 @@ export default function GallerySection() {
 
   return (
     <section className="mx-auto max-w-[1180px] px-5 py-4">
+      <div className="mb-3 flex items-baseline justify-between">
+        <p className="section-label">featured_artwork</p>
+        <a
+          href="/gallery"
+          className="border-b border-[var(--surface2)] font-mono text-xs text-[var(--overlay0)] transition-colors hover:text-[var(--mauve)]"
+        >
+          view all &rarr;
+        </a>
+      </div>
       <TUIPane index={"[5]"} label="gallery.png">
         <div className="flex flex-col-reverse md:flex-row">
           <div
