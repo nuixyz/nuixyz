@@ -124,17 +124,17 @@ export const ARTWORK: Artwork[] = [
     category: "digital",
     tags: ["digital", "procreate"],
     imageSrc: "/artwork/sketch.webp",
-    featured: true,
+    featured: false,
   },
-  // {
-  //   id: "6",
-  //   title: "baka baka baka",
-  //   description: "I instantly give up",
-  //   category: "pixel",
-  //   tags: ["pixel"],
-  //   imageSrc: "/artwork/triplebaka.webp",
-  //   featured: true,
-  // },
+  {
+    id: "6",
+    title: "baka baka baka",
+    description: "I instantly give up",
+    category: "pixel",
+    tags: ["pixel"],
+    imageSrc: "/artwork/triplebaka.webp",
+    featured: false,
+  },
 ];
 
 export const TERMINAL_COMMANDS: Record<string, string> = {
