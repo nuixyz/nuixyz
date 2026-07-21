@@ -18,7 +18,7 @@ export default function AvatarPane() {
         className="order-first md:order-none flex flex-col"
       >
         <div className="p-[28px_22px_22px] flex flex-col items-center justify-center gap-[14px] h-full">
-          <div className="w-[220px] h-[220px] shrink-0 overflow-hidden bg-[var(--surface0)] flex items-center justify-center p-3">
+          <div className="w-[220px] h-[220px] shrink-0 overflow-hidden flex items-center justify-center p-3">
             <pre className="font-mono text-[6px] leading-[1.0] tracking-normal text-[var(--mauve)] whitespace-pre select-none text-center">
               {asciiArt}
             </pre>

@@ -9,6 +9,14 @@ export default function Navbar() {
   const pathname = usePathname();
   const [theme, setTheme] = useState<"mocha" | "latte">("mocha");
 
+  // load theme from local storage
+  useEffect(() => {
+      const savedTheme = localStorage.getItem("theme") as "mocha" | "latte" | null;
+      if (savedTheme) {
+        setTheme(savedTheme);
+      }
+    }, []);
+
   // sync theme
   useEffect(() => {
     const root = document.documentElement;
@@ -17,6 +25,7 @@ export default function Navbar() {
     } else {
       root.removeAttribute("data-theme");
     }
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {

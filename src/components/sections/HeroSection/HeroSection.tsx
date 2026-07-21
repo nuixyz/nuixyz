@@ -41,12 +41,12 @@ export default function HeroSection() {
           {/* Bracket buttons */}
           <div className="flex flex-wrap gap-2 mb-5">
             <a
-              href="/resume.pdf"
+              href="https://ko-fi.com/nuixyz"
               target="_blank"
               rel="noreferrer"
               className="border border-[var(--mauve)] px-4 py-2 font-mono text-xs text-[var(--mauve)] transition-all hover:bg-[var(--mauve)] hover:text-[var(--crust)]"
             >
-              &lt; &darr; resume.pdf &gt;
+              &lt; support me <span className="font-sans">&lt;3 </span> &gt;
             </a>
             <a
               href="/projects"
