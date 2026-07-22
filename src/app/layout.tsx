@@ -17,6 +17,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nuixyz.dev"),
+
   title: {
     default: "nuixyz",
     template: "%s | nuixyz",
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "nuixyz.dev",
     title: "nuixyz",
     description: "dev and artist",
-    images: [{ url: "/logo.svg", width: 1200, height: 630 }],
+    images: [{ url: "/logo.png", width: 400, height: 400 }],
   },
   twitter: {
     card: "summary_large_image",
@@ -61,6 +63,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable}`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <head>

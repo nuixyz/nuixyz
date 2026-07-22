@@ -24,7 +24,7 @@ export default function HeroSection() {
           {/* title */}
           <h1 className="font-mono text-[clamp(1.7rem,3.4vw,2.5rem)] font-bold leading-[1.25] tracking-[-0.01em] text-[var(--text)] mb-5">
             hi, i&apos;m <span className="text-[var(--mauve)]">cha</span>.
-            <span className="inline-block w-3 h-[1em] bg-[var(--mauve)] vertical-bottom mb-1.5 ml-0.5 animate-[blink_1s_step-end_infinite]" style={{ verticalAlign: 'text-bottom' }} />
+            <span className="cursor-block"/>
           </h1>
 
           {/* $ whoami */}
@@ -35,7 +35,7 @@ export default function HeroSection() {
               <li>draw 2d digital illustration</li>
               <li>make pixel art</li>
             </ul>
-            if you are intesrested in working with me, you can email me at <a href="#commissionme"><u>contactme@nuixyz.dev!</u></a> :)
+            if you are intesrested in working with me, you can email me at <a href="#commissionme"><u>contactme@nuixyz.dev!</u></a> <span className="font-sans">:)</span>
           </div>
 
           {/* Bracket buttons */}

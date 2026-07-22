@@ -40,6 +40,7 @@ export const TERMINAL_COMMANDS: Record<string, string> = {
 <span class="t-key">gallery</span>    my artwork
 <span class="t-key">contact</span>    get in touch
 <span class="t-key">blog</span>       my writing
+<span class="t-key">bad apple</span>  i ate an apple today. it was bad.
 <span class="t-key">clear</span>      clear terminal`,
 
   about: `<span class="t-section">about me</span>
@@ -55,7 +56,7 @@ I like computers and things related to it`,
   whoami: `<span class="t-val">nuixyz</span> — developer; artist`,
 
   projects: `<span class="t-section">projects</span>
-<span class="t-key">kanarenshu</span>  <span class="t-link"><a href="https://github.com/nuixyz/kanarenshu">github.com/nuixyz/kanarenshu</a></span>`,
+<span class="t-key">kanarenshu</span>  <span class="t-link"><a href="https://github.com/nuixyz/kanarenshu">[ live ]</a></span>`,
 
   gallery: `<span class="t-section">gallery</span>
 Find all my art at: <span class="t-link"><a href="/gallery">/gallery</a></span>`,
@@ -70,7 +71,7 @@ Stuffs I like to talk about :) <span class="t-link"><a href="/blog">/blogs</a></
 <span class="t-key">email</span>    <span class="t-link">contactme@nuixyz.dev</span>
 <span class="t-key">twitter</span>  <span class="t-link">@nuixdraws</span>`,
 
-neofetch: `
+  neofetch: `
 <div style="display: flex; gap: 1rem; align-items: flex-start; font-family: monospace;">
   <pre style="color: var(--mauve); margin: 0; line-height: 1.2;">⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
@@ -176,6 +177,12 @@ export interface Artwork {
   tags: string[];
   imageSrc: string;
   featured: boolean;
+  date?: string,
+}
+
+export function parseArtDate(date: string): number {
+  const [d, m, y] = date.split("-").map(Number);
+  return new Date(y, m - 1, d).getTime();
 }
 
 export const ARTWORK: Artwork[] = [
@@ -187,6 +194,7 @@ export const ARTWORK: Artwork[] = [
     tags: ["digial", "procreate"],
     imageSrc: "/artwork/thevoidwithin.webp",
     featured: true,
+    date: "21-03-2026",
   },
   {
     id: "2",
@@ -196,6 +204,7 @@ export const ARTWORK: Artwork[] = [
     tags: ["digital", "procreate"],
     imageSrc: "/artwork/crystalapple.webp",
     featured: true,
+    date: "07-04-2026",
   },
   {
     id: "3",
@@ -205,42 +214,47 @@ export const ARTWORK: Artwork[] = [
     tags: ["digital", "procreate", "oc"],
     imageSrc: "/artwork/specsandswag.webp",
     featured: true,
+    date: "31-03-2026",
   },
   {
     id: "4",
     title: "whimsical",
     description: "Purple clouds and a comically large lollipop",
     category: "pixel",
-    tags: ["pixel"],
+    tags: ["pixel art"],
     imageSrc: "/artwork/whimsical.webp",
     featured: true,
+    date: "14-07-2025",
   },
   {
     id: "5",
     title: "Green hair",
-    description: "random sketch 1",
+    description: "sketchin sketchin",
     category: "digital",
     tags: ["digital", "procreate"],
     imageSrc: "/artwork/sketch.webp",
     featured: false,
+    date: "29-08-2025",
   },
   {
     id: "6",
     title: "baka baka baka",
     description: "I instantly give up",
     category: "pixel",
-    tags: ["pixel"],
+    tags: ["pixel art"],
     imageSrc: "/artwork/triplebaka.webp",
     featured: false,
+    date: "24-04-2025",
   },
   {
     id: "7",
     title: "cats",
     description: "floofballs",
     category: "digital",
-    tags: ["digital", "procreate"],
+    tags: ["digital", "procreate", "fluff"],
     imageSrc: "/artwork/cats.webp",
     featured: false,
+    date: "03-01-2026",
   },
   {
     id: "8",
@@ -250,42 +264,47 @@ export const ARTWORK: Artwork[] = [
     tags: ["digital", "procreate"],
     imageSrc: "/artwork/doodle.webp",
     featured: false,
+    date: "15-01-2026",
   },
   {
     id: "9",
     title: "cat doodles",
     description: "meow",
     category: "pixel",
-    tags: ["pixel"],
+    tags: ["pixel art"],
     imageSrc: "/artwork/catdoodles.webp",
     featured: false,
+    date: "17-03-2025",
   },
   {
     id: "10",
     title: "Frieren",
     description: "amazing show btw 10/10",
     category: "digital",
-    tags: ["digital"],
+    tags: ["digital", "procreate"],
     imageSrc: "/artwork/frieren.webp",
     featured: false,
+    date: "15-02-2026",
   },
   {
     id: "11",
-    title: "random",
-    description: "random sketch 2",
-    category: "digital",
-    tags: ["digital", "procreate"],
-    imageSrc: "/artwork/girl2.webp",
-    featured: false,
-  },
-  {
-    id: "12",
     title: "Makima",
     description: "🐕",
     category: "digital",
-    tags: ["digital", "procreate"],
+    tags: ["digital", "procreate", "tatsuki fujimoto", "justiceforreze"],
     imageSrc: "/artwork/makima.webp",
     featured: true,
+    date: "14-04-2026",
+  },
+  {
+    id: "12",
+    title: "Selfie",
+    description: "random sketch 2",
+    category: "digital",
+    tags: ["digital", "procreate", "oc"],
+    imageSrc: "/artwork/sketch2.webp",
+    featured: false,
+    date: "10-06-2026",
   },
   {
     id: "13",
@@ -293,16 +312,78 @@ export const ARTWORK: Artwork[] = [
     description: "random sketch 3",
     category: "digital",
     tags: ["digital", "procreate"],
-    imageSrc: "/artwork/sketch2.webp",
+    imageSrc: "/artwork/sketch3.webp",
     featured: false,
+    date: "18-11-2024",
   },
   {
     id: "14",
-    title: "random",
-    description: "random sketch 4",
+    title: "Elf queen",
+    description: "Thicc elf queen.",
     category: "digital",
     tags: ["digital", "procreate"],
-    imageSrc: "/artwork/sketch3.webp",
+    imageSrc: "/artwork/sketch4.webp",
     featured: false,
+    date: "18-11-2024",
+  },
+  {
+    id: "15",
+    title: "2B",
+    description: "2B or not 2B?",
+    category: "digital",
+    tags: ["digital", "procreate"],
+    imageSrc: "/artwork/2b.webp",
+    featured: false,
+    date: "13-03-2026",
+  },
+  {
+    id: "16",
+    title: "Goth.",
+    description: "Goth girls and sake 🍶",
+    category: "digital",
+    tags: ["digital", "procreate"],
+    imageSrc: "/artwork/kimono_goth.webp",
+    featured: true,
+    date: "02-01-2026",
+  },
+  {
+    id: "17",
+    title: "Red Hair but not shanks",
+    description: "Female Shanks perhaps? Nah screw that.",
+    category: "digital",
+    tags: ["digital", "procreate"],
+    imageSrc: "/artwork/sketch5.webp",
+    featured: false,
+    date: "25-06-2025",
+  },
+  {
+    id: "18",
+    title: "zettai",
+    description: "i cannot",
+    category: "digital",
+    tags: ["digital", "procreate"],
+    imageSrc: "/artwork/sketch6.webp",
+    featured: false,
+    date: "04-12-2025",
+  },
+  {
+    id: "19",
+    title: "Specs and Stare",
+    description: "She stares at you; knowing what you did. What you are.",
+    category: "digital",
+    tags: ["digital", "procreate"],
+    imageSrc: "/artwork/sketch7.webp",
+    featured: false,
+    date: "11-04-2026",
+  },
+  {
+    id: "20",
+    title: "Wallpaper 1",
+    description: "cats and coffee with some jazz music?",
+    category: "digital",
+    tags: ["digital", "procreate"],
+    imageSrc: "/artwork/wallpaper.webp",
+    featured: false,
+    date: "29-08-2025",
   },
 ];

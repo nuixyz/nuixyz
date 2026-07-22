@@ -10,6 +10,7 @@ interface HistoryEntry {
 }
 
 const USER = "[guest@nuixyz:~]$ ";
+const FRAME_MS = 48;
 
 export default function Terminal() {
   const [entries, setEntries] = useState<HistoryEntry[]>([]);
@@ -17,12 +18,74 @@ export default function Terminal() {
   const [commandLog, setCommandLog] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number | null>(null);
 
+  // misc
+  const badAppleRef = useRef<HTMLPreElement>(null);
+  const framesRef = useRef<string[] | null>(null);
+  const cancelRef = useRef(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Scroll to bottom when entries change
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
   }, [entries]);
+
+  useEffect(() => {
+    return () => {
+      cancelRef.current = true;
+    };
+  }, []);
+
+  async function playBadApple() {
+    cancelRef.current = true;
+
+    // Fetch frames
+    if (!framesRef.current) {
+      try {
+        const res = await fetch("/badapple/frames.bin");
+        const text = await res.text();
+        framesRef.current = text.split("\x1e");
+      } catch (err) {
+        setEntries((prev) => [
+          ...prev,
+          { command: "badapple", output: "Failed to load animation frames." },
+        ]);
+        return;
+      }
+    }
+
+    const frames = framesRef.current;
+    cancelRef.current = false;
+    setIsPlaying(true);
+
+    let i = 0;
+    const start = performance.now();
+
+    function tick(now: number) {
+      if (cancelRef.current || i >= frames.length) {
+        setIsPlaying(false);
+        return;
+      }
+
+      if (now - start >= i * FRAME_MS) {
+        if (badAppleRef.current) {
+          badAppleRef.current.textContent = frames[i];
+          // Auto-scroll terminal container while frames are playing
+          scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
+        }
+        i++;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(() => requestAnimationFrame(tick));
+  }
+
+  function stopBadApple() {
+    cancelRef.current = true;
+    setIsPlaying(false);
+  }
 
   const runCommand = (raw: string) => {
     const trimmed = raw.trim();
@@ -31,7 +94,20 @@ export default function Terminal() {
     const key = trimmed.toLowerCase();
 
     if (key === "clear") {
+      stopBadApple();
       setEntries([]);
+    } else if (key === "badapple" || key === "bad apple") {
+      setEntries((prev) => [
+        ...prev,
+        { command: trimmed, output: "playing bad apple... type 'stop' to cancel" },
+      ]);
+      playBadApple();
+    } else if (key === "stop") {
+      stopBadApple();
+      setEntries((prev) => [
+        ...prev,
+        { command: trimmed, output: "stopped" },
+      ]);
     } else {
       const output =
         TERMINAL_COMMANDS[key] ??
@@ -104,6 +180,13 @@ export default function Terminal() {
                 />
               </div>
             ))}
+
+            {isPlaying && (
+              <pre
+                ref={badAppleRef}
+                className="my-2 font-mono text-[5px] leading-[1.0] whitespace-pre text-[var(--mauve)] select-none"
+              />
+            )}
 
             <div className="flex items-center gap-2">
               <span className="shrink-0 text-[var(--mauve)]">{USER}</span>

@@ -131,8 +131,10 @@
   /* Updated Terminal Element Utilities */
   .cursor-block {
     display: inline-block;
-    width: 8px;
+    width: 12px;
     height: 1em;
+    margin-bottom: 9px;
+    margin-left: 3px;
     background: var(--mauve);
     vertical-align: text-bottom;
     animation: blink 1s step-end infinite;
