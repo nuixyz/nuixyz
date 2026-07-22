@@ -10,7 +10,7 @@ interface HistoryEntry {
 }
 
 const USER = "[guest@nuixyz:~]$ ";
-const FRAME_MS = 48;
+const FRAME_MS = 66; // roughly 15.15 FPS
 
 export default function Terminal() {
   const [entries, setEntries] = useState<HistoryEntry[]>([]);
@@ -23,6 +23,7 @@ export default function Terminal() {
   const framesRef = useRef<string[] | null>(null);
   const cancelRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,6 +37,13 @@ export default function Terminal() {
     return () => {
       cancelRef.current = true;
     };
+  }, []);
+
+  useEffect(() => {
+    const audio = new Audio("/badapple/badapple.mp3");
+    audio.preload = "auto";
+    audioRef.current = audio;
+    return () => { audio.pause(); };
   }, []);
 
   async function playBadApple() {
@@ -60,23 +68,28 @@ export default function Terminal() {
     cancelRef.current = false;
     setIsPlaying(true);
 
-    let i = 0;
-    const start = performance.now();
+    const audio = audioRef.current!;
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
 
-    function tick(now: number) {
-      if (cancelRef.current || i >= frames.length) {
+    let lastRenderedFrame = -1;
+
+    function tick() {
+      if (cancelRef.current || audio.ended) {
         setIsPlaying(false);
         return;
       }
 
-      if (now - start >= i * FRAME_MS) {
+      const expectedFrame = Math.floor((audio.currentTime * 1000) / FRAME_MS);
+
+      if (expectedFrame !== lastRenderedFrame && expectedFrame < frames.length) {
         if (badAppleRef.current) {
-          badAppleRef.current.textContent = frames[i];
-          // Auto-scroll terminal container while frames are playing
+          badAppleRef.current.textContent = frames[expectedFrame];
           scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
         }
-        i++;
+        lastRenderedFrame = expectedFrame;
       }
+
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(() => requestAnimationFrame(tick));
@@ -84,6 +97,7 @@ export default function Terminal() {
 
   function stopBadApple() {
     cancelRef.current = true;
+    audioRef.current?.pause();
     setIsPlaying(false);
   }
 
